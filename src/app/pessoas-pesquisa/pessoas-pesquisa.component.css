@@ -1,0 +1,8 @@
+#linhaStatus{
+  text-decoration: none;
+  color: black;
+}
+
+#linhaStatus:hover, #linhaStatus:focus{
+  text-decoration: underline;
+}
