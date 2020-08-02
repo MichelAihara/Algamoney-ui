@@ -21,6 +21,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     DropdownModule,
     InputNumberModule,
     InputMaskModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
