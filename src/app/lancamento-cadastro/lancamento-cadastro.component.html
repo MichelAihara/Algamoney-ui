@@ -8,16 +8,25 @@
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton [options]="tipos" #tipo ></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy"  [inline]="false" [readonlyInput]="false" [showIcon]="false"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy"  [inline]="false"
+          [readonlyInput]="false" [showIcon]="false" name="vencimento"
+          ngModel #vencimento="ngModel" required>
+        </p-calendar>
+        <app-message [control]="vencimento" error="required" text="informe uma data"></app-message>
+
       </div>
+
+
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
-        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" name="receita "ngModel #receita="ngModel" required></p-calendar>
+
+        <app-message [control]="receita" error="required" text="informe uma data"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
@@ -25,36 +34,43 @@
         <input pInputText type="text" name="descricao"
         ngModel #descricao="ngModel" required minlength="5">
 
-        <div *ngIf="descricao.hasError('required') && descricao.dirty"
-        class="ui-messages ui-messages-error">Informe uma descrição
-        </div>
-        <div *ngIf="descricao.hasError('minlength') && descricao.dirty"
-        class="ui-messages ui-messages-error">
-        Mínimo de {{descricao.errors.minlength.requiredLength}} caracteres.
-         Voce digitou apenas {{descricao.errors.minlength.actualLength}}
-        </div>
+        <app-message [control]="descricao" error="required" text="informe uma descrição"></app-message>
+
+        <app-message [control]="descricao" error="minlength" text="Mínimo de {{descricao.errors?.minlength?.requiredLength}} caracteres.
+        Voce digitou apenas {{descricao.errors?.minlength?.actualLength}}"></app-message>
 
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <p-inputNumber mode="currency" currency="BRL" locale="pt-BR" name="valor" ngModel></p-inputNumber>
+        <p-inputNumber mode="currency" currency="BRL" locale="pt-BR"
+        name="valor" ngModel #valor="ngModel" required></p-inputNumber>
 
+        <app-message [control]="valor" error="required" text="informe o valor"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria></p-dropdown>
+
+        <p-dropdown [options]="categorias" placeholder="Selecione"
+          name="categoria" ngModel #categoria="ngModel" required>
+        </p-dropdown>
+
+        <app-message [control]="categoria" error="required" text="selecione uma categoria"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" #pessoa></p-dropdown>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true"
+        ngModel #pessoa="ngModel" required></p-dropdown>
+
+        <app-message [control]="pessoa" error="required" text="selecione uma pessoa"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea rows="3"></textarea>
+        <textarea pInputTextarea rows="3" name="observacao" ngModel #observacao="ngModel" required></textarea>
+        <app-message [control]="observacao" error="required" text="informe uma observação"></app-message>
       </div>
 
       <div class="ui-g-12">
@@ -64,8 +80,6 @@
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
 
-
     </div>
-
   </form>
 </div>
